@@ -1,4 +1,4 @@
-import generateToken from "../config/token.js"
+import {generateToken} from "../config/token.js"
 import User from "../models/user.model.js"
 
 
