@@ -1,10 +1,20 @@
-import React from 'react'
-import { BsRobot } from "react-icons/bs";
- import { IoSparkles } from "react-icons/io5";
- import { motion } from "motion/react"
-import { FcGoogle } from "react-icons/fc";
+import React from 'react';
+import axios from 'axios';
 
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/userSlice";
+
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../utils/firebase";
+
+import { ServerUrl } from "../App";
+
+import { BsRobot } from "react-icons/bs";
+import { IoSparkles } from "react-icons/io5";
+import { FcGoogle } from "react-icons/fc";
+import { motion } from "motion/react";
 const Auth = () => {
+    const dispatch = useDispatch();
 
        const handleGoogleAuth = async () => {
         try {
@@ -17,6 +27,8 @@ const Auth = () => {
             dispatch(setUserData(result.data))
     
         } catch (error) {
+              console.log("ERROR CODE:", error.code);
+            console.log("ERROR MESSAGE:", error.message);
             console.log(error)
               dispatch(setUserData(null))
         }
