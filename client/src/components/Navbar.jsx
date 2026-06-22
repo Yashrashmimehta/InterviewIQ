@@ -57,6 +57,10 @@ const Navbar = () => {
                 <div className='relative  '>
                     <button 
                     onClick = {() => {
+                        if(!userData){
+                            setShowAuth(true)
+                            return
+                        }
                         setShowCreditPopup(!showCreditPopup);
                         setShowUserPopup(false)
                      }}
@@ -77,6 +81,10 @@ const Navbar = () => {
                 <div className='relative '>
                     <button 
                     onClick = {() =>{
+                        if(!userData){
+                            setShowAuth(true)
+                            return
+                        }
                         setShowUserPopup(!showUserPopup);
                         setShowCreditPopup(false)
                     }}
@@ -102,6 +110,8 @@ const Navbar = () => {
             </div>
 
         </motion.div>
+        
+        {showAuth && <AuthModel onClose={() => setShowAuth(false)}/>}
     </div>
   )
 }
